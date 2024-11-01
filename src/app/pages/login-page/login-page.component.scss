@@ -1,0 +1,209 @@
+.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #33005f;
+
+  .logo {
+    padding-bottom: 40px;
+
+    .logotipo {
+      width: 220px;
+    }
+  }
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 60px 120px;
+    background-color: #fff;
+    border-radius: 12px;
+
+    .title {
+      margin: 0 0 64px 0;
+      color: #33005f;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .form {
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .input {
+          position: relative;
+          margin: 12px;
+
+          .input-email {
+            display: block;
+            margin: 0;
+            padding: 8px;
+            color: inherit;
+            width: 300px;
+            border: 1px solid #33005f;
+            border-radius: 0.4rem;
+          }
+
+          .input-email::placeholder {
+            font-weight: 200;
+            color: #33005f;
+          }
+
+          .input-email:focus {
+            outline: none;
+            border: 2px solid #33005f;
+          }
+
+          .label-email {
+            display: block;
+            position: absolute;
+            left: 4px;
+            bottom: 100%;
+            color: #33005f;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: inherit;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translate3d(0, 0, 0) scale(1);
+            transform-origin: 0 0;
+            transition: opacity 300ms;
+          }
+
+          .input-email:placeholder-shown + .label-email {
+            visibility: hidden;
+            z-index: -1;
+          }
+
+          .input-email:not(:placeholder-shown) + .label-email,
+          .input-email:focus:not(:placeholder-shown) + .label-email {
+            visibility: visible;
+            z-index: 1;
+            opacity: 1;
+            transform: translate3d(0, 20%, 0) scale(90%);
+            transition: transform 300ms, visibility 0ms, z-index 0ms;
+          }
+
+          .input-password {
+            display: block;
+            margin: 0;
+            padding: 8px;
+            color: inherit;
+            width: 300px;
+            border: 1px solid #33005f;
+            border-radius: 0.4rem;
+          }
+
+          .input-password::placeholder {
+            font-weight: 200;
+            color: #33005f;
+          }
+
+          .input-password:focus {
+            outline: none;
+            border: 2px solid #33005f;
+          }
+
+          .label-password {
+            display: block;
+            position: absolute;
+            left: 4px;
+            bottom: 100%;
+            color: #33005f;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: inherit;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translate3d(0, 0, 0) scale(1);
+            transform-origin: 0 0;
+            transition: opacity 300ms;
+          }
+
+          .input-password:placeholder-shown + .label-email {
+            visibility: hidden;
+            z-index: -1;
+          }
+
+          .input-password:not(:placeholder-shown) + .label-password,
+          .input-password:focus:not(:placeholder-shown) + .label-password {
+            visibility: visible;
+            z-index: 1;
+            opacity: 1;
+            transform: translate3d(0, 20%, 0) scale(90%);
+            transition: transform 300ms, visibility 0ms, z-index 0ms;
+          }
+        }
+
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .standard-login {
+            font-weight: 500;
+            width: 240px;
+            margin: 8px;
+            padding: 12px 0;
+            outline: none;
+            border: none;
+            color: #fff;
+            background-color: #33005f;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: ease-in-out 200ms;
+          }
+
+          .standard-login:hover {
+            background-color: #470085;
+          }
+
+          .google-login {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            width: 240px;
+            margin: 8px;
+            padding: 10px 0;
+            border: 1px solid #33005f;
+            color: #33005f;
+            background-color: #fff;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: ease-in-out 200ms;
+          }
+
+          .google-login:hover {
+            background-color: #DCD1E5;
+          }
+
+          .google {
+            margin-right: 20px;
+            width: 16px;
+          }
+
+          .register-now {
+            display: flex;
+            margin-top: 8px;
+
+            .btn-register {
+              margin-left: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
