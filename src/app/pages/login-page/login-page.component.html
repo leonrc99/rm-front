@@ -4,16 +4,17 @@
   </div>
 
   <div class="form-content">
-    <h1 class="title">FAÇA LOGIN PARA CONTINUAR</h1>
+    <h1 class="title">{{ title }}</h1>
 
     <div class="form">
-      <form class="login-form" action="login()">
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="input">
           <input
             type="text"
             id="email"
             class="input-email"
             placeholder="Coloque o seu e-mail aqui"
+            formControlName="email"
           />
           <label for="email" class="label-email">E-Mail</label>
         </div>
@@ -21,16 +22,16 @@
         <div class="input">
           <input
             type="password"
-            name="password"
             id="password"
             class="input-password"
             placeholder="Coloque sua senha aqui"
+            formControlName="password"
           />
           <label for="password" class="label-password">Senha</label>
         </div>
 
         <div class="buttons">
-          <button class="standard-login">Entrar Agora</button>
+          <button type="submit" class="standard-login">Entrar Agora</button>
 
           <button class="google-login">
             <img
