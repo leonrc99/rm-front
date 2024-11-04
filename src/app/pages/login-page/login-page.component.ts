@@ -3,7 +3,6 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router, RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-login-page',
   standalone: true,
@@ -17,7 +16,11 @@ export class LoginPageComponent {
 
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: [''],
       password: [''],
@@ -28,15 +31,15 @@ export class LoginPageComponent {
     const { email, password } = this.loginForm.value;
 
     this.auth.login(email, password).subscribe({
-      next: () => {      
+      next: () => {
         const role: string | null = this.auth.getRole();
-        
+
         if (role === 'ADMIN') {
-          this.router.navigate(['/dashboard'])
+          this.router.navigate(['/dashboard']);
         } else if (role === null) {
-          alert('Você precisa estar autenticado para continuar')
+          alert('Você precisa estar autenticado para continuar');
         } else {
-          this.router.navigate(['/not-admin'])
+          this.router.navigate(['/not-admin']);
         }
       },
       error: (error) => {
