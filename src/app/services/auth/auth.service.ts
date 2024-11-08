@@ -8,7 +8,7 @@ import { CanActivate, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements CanActivate {
+export class AuthService {
   private baseUrl: string = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -48,19 +48,8 @@ export class AuthService implements CanActivate {
     return null;
   }
 
-  public canActivate(): boolean {
-    const token = this.getToken();
-    if (token) {
-      const role = this.getRole();
-      if (role?.includes('ADMIN')) {
-        return true;
-      } else {
-        this.router.navigate(['/not-admin']);
-        return false;
-      }
-    } else {
-      this.router.navigate(['/login']);
-      return false;
-    }
+  public logout() {
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 }

@@ -33,13 +33,13 @@
     @media (max-width: 768px) {
       width: 80%;
       padding: 40px 60px;
-      margin: 0 16px; // Adiciona margem lateral para dar espaço nas bordas
+      margin: 0 16px;
     }
 
     @media (max-width: 480px) {
       width: 90%;
       padding: 30px 20px;
-      margin: 0 12px; // Margem lateral menor para celulares
+      margin: 0 12px;
     }
 
     .title {

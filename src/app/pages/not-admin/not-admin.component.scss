@@ -1,7 +1,40 @@
 .content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100vw;
+  background-color: #33005f;
+
+  .logo {
+    width: 300px;
+    margin: 80px;
+  }
+
+  .message {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .logout {
+    font-weight: 500;
+    width: 240px;
+    margin: 80px;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #33005f;
+    padding: 12px 0;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: ease-in-out 200ms;
+
+    &:hover {
+      color: #33005f;
+      background-color: #fff;
+      border: 1px solid #33005f;
+    }
+  }
 }

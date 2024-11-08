@@ -1,0 +1,27 @@
+<section class="menu">
+  <div class="top-content">
+    <div class="menu-header">
+      <img class="logo" src="assets/logo-rm.svg" alt="logotipo" />
+    </div>
+    <div class="menu-items">
+      <div class="menu-button" (click)="homeNavigate()">
+        <img class="icon-button" src="assets/icons/home-icon.svg" alt="icon" />
+        <p class="title-button">Início</p>
+      </div>
+      <div class="menu-button" (click)="productNavigate()">
+        <img class="icon-button" src="assets/icons/bag-icon.svg" alt="icon" />
+        <p class="title-button">Produtos</p>
+      </div>
+    </div>
+  </div>
+  <div class="menu-footer">
+    <div class="menu-button">
+      <img class="icon-button" src="assets/icons/settings-icon.svg" alt="icon" />
+      <p class="title-button">Configurações</p>
+    </div>
+    <div class="menu-button" (click)="logout()">
+      <img class="icon-button" src="assets/icons/logout-icon.svg" alt="icon" />
+      <p class="title-button">Sair</p>
+    </div>
+  </div>
+</section>

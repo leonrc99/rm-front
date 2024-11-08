@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { VerticalMenuComponent } from "../../components/vertical-menu/vertical-menu.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, VerticalMenuComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -16,7 +17,11 @@ export class DashboardComponent {
     this.setUsername();
   }
 
-  private setUsername(): string | null {
-    return (this.username = this.authService.getUsername());
+  public setUsername(): void {
+    this.username = this.authService.getUsername();
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 }

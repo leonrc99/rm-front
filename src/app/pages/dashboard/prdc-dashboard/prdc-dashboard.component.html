@@ -1,0 +1,69 @@
+<div class="content">
+  <div class="header">
+    <h1 class="title-page">
+      Produtos
+    </h1>
+    <div class="filter">
+      <label for="category-filter">Filtrar por Categoria:</label>
+      <select class="category-filter">
+        <option value="">Todas as Categorias</option>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+  </div>
+<div class="table-content">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="thead-title"></th>
+        <th class="thead-title">Nome</th>
+        <th class="thead-title">Descrição</th>
+        <th class="thead-title">Estoque</th>
+        <th class="thead-title">Preço</th>
+        <th class="thead-title">Excluir</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of paginatedProducts">
+        <td class="tbody-content">
+          <img [src]="product.imageUrl" alt="" width="50" height="50" />
+        </td>
+        <td class="tbody-content">{{ product.name }}</td>
+        <td class="tbody-content">{{ product.description }}</td>
+        <td class="tbody-content">{{ product.stock }}</td>
+        <td class="tbody-content">{{ product.price | currency : "BRL" }}</td>
+        <td class="tbody-content">
+          <!-- <button class="table-btn" (click)="editProduct(product)">Editar</button> -->
+          <button class="table-btn" (click)="deleteProduct(product.id)">
+            <img src="assets/icons/trash-icon.svg" class="icon-btn">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botão de Adicionar Produto -->
+  <div class="buttons">
+    <button class="add-product" (click)="getProducts()">
+      Adicionar Novo Produto
+    </button>
+  
+    <!-- Paginação -->
+    <div class="pagination">
+      <button
+        *ngFor="
+          let page of [].constructor(Math.ceil(products.length / pageSize));
+          let i = index
+        "
+        [class.active]="currentPage === i + 1"
+        (click)="changePage(i + 1)"
+      >
+        {{ i + 1 }}
+      </button>
+    </div>
+  </div>
+</div>
+
+</div>
