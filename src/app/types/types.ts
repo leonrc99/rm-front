@@ -5,9 +5,15 @@ export type LoginData = {
 
 export type Product = {
   id: number;
-  imageUrl?: string;
   name: string;
   description: string;
-  stock: number;
   price: number;
+  stock: number;
+  images: string[];
+  category: Category;
+}
+
+export type Category = {
+  id: number;
+  name: string;
 }

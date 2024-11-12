@@ -1,31 +1,37 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../../../types/types';
-import { productsMock } from '../../../../mocks/product.mock';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Category, Product } from '../../../types/types';
 import { ProductService } from '../../../services/product/product.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-prdc-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './prdc-dashboard.component.html',
   styleUrl: './prdc-dashboard.component.scss',
 })
 export class PrdcDashboardComponent implements OnInit {
-  categories = ['Eletrônicos', 'Vestuário', 'Alimentos', 'Livros'];
+  categories: Category[] = [];
   public products!: Product[];
-  //public filteredProducts!: Product[];
+  selectedCategory: number | null = null;
 
   public pageSize = 5;
   public currentPage = 1;
 
   public Math = Math;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
+    this.productService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
+
     this.getProducts();
-    //this.filteredProducts = this.products; // Inicializa com todos os produtos
   }
 
   get paginatedProducts(): Product[] {
@@ -34,14 +40,25 @@ export class PrdcDashboardComponent implements OnInit {
   }
 
   public getProducts() {
-    this.productService.getAllProducts().subscribe({
-      next: (res) => {
-        this.products = res;
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+    if (this.selectedCategory) {
+      this.productService.getAllProducts(this.selectedCategory).subscribe({
+        next: (res: Product[]) => {
+          this.products = res;
+        },
+        error: (err: any) => {
+          console.error(err);
+        },
+      });
+    } else {
+      this.productService.getAllProducts().subscribe({
+        next: (res) => {
+          this.products = res;
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+    }
   }
 
   changePage(page: number): void {
@@ -62,21 +79,11 @@ export class PrdcDashboardComponent implements OnInit {
     this.productService.deleteProduct(productId).subscribe({
       next: () => {
         this.getProducts();
+        this.cdr.detectChanges;
       },
-      error: (err) => {
-        console.error('Erro ao excluir o produto:', err);
+      error: (error) => {
+        console.error('Erro ao excluir produto:', error);
       },
     });
   }
-
-
-  /* filterByCategory(category: string) {
-    if (category) {
-      this.filteredProducts = this.products.filter(
-        product => product.category === category
-      );
-    } else {
-      this.filteredProducts = this.products; // Mostra todos os produtos se nenhuma categoria for selecionada
-    }
-  } */
 }

@@ -5,10 +5,10 @@
     </h1>
     <div class="filter">
       <label for="category-filter">Filtrar por Categoria:</label>
-      <select class="category-filter">
+      <select class="category-filter"  [(ngModel)]="selectedCategory" (change)="getProducts()">
         <option value="">Todas as Categorias</option>
-        <option *ngFor="let category of categories" [value]="category">
-          {{ category }}
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
         </option>
       </select>
     </div>
@@ -28,14 +28,13 @@
     <tbody>
       <tr *ngFor="let product of paginatedProducts">
         <td class="tbody-content">
-          <img [src]="product.imageUrl" alt="" width="50" height="50" />
+          <img [src]="product.images[0]" alt="" width="50" height="50" />
         </td>
         <td class="tbody-content">{{ product.name }}</td>
         <td class="tbody-content">{{ product.description }}</td>
         <td class="tbody-content">{{ product.stock }}</td>
         <td class="tbody-content">{{ product.price | currency : "BRL" }}</td>
         <td class="tbody-content">
-          <!-- <button class="table-btn" (click)="editProduct(product)">Editar</button> -->
           <button class="table-btn" (click)="deleteProduct(product.id)">
             <img src="assets/icons/trash-icon.svg" class="icon-btn">
           </button>
